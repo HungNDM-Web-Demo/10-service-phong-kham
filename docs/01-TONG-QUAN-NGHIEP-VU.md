@@ -14,7 +14,7 @@
 | Loại sản phẩm | Web quản lý + trang đặt lịch khám |
 | Ý tưởng gốc | 3.2 · Phòng khám / nha khoa (`ZDOCS/02-KE-HOACH/DANH-SACH-Y-TUONG.md`) |
 | Người phụ trách | |
-| Trạng thái | Mới tạo từ khuôn mẫu |
+| Trạng thái | Có tài liệu nghiệp vụ (SRS, use case, kịch bản demo, kịch bản kiểm thử), chưa code |
 
 ## 2. Vấn đề của khách hàng
 
@@ -46,6 +46,9 @@
 | Area | Chức năng | Màn hình (route FE dự kiến) | Ưu tiên |
 | :--- | :--- | :--- | :---: |
 | `System` | Đăng nhập, tài khoản, vai trò, cài đặt | Có sẵn | — |
+| `Clinic` | Tổng quan trong ngày | `/dashboard` | P1 |
+| `Clinic` | Danh mục dịch vụ, thuốc, chẩn đoán mẫu | `/services` | P1 |
+| `Booking` | Bác sĩ, lịch làm việc | `/doctors` | P1 |
 | `Booking` | Lịch khám theo bác sĩ | `/appointments` | P1 |
 | `Booking` | Đặt lịch online | `/dat-lich` | P1 |
 | `Clinic` | Tiếp đón, hàng chờ | `/queue` | P1 |
