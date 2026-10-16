@@ -2,7 +2,7 @@ import type { PaginationQuery } from '@/types/api'
 
 /** DTO nhật ký, khớp QUY-UOC-API §4.6. */
 
-export type AuditAction = 'Create' | 'Update' | 'Delete' | 'Login'
+export type AuditAction = 'Create' | 'Update' | 'Delete' | 'Login' | 'View'
 
 export type AuditLogDto = {
   id: string

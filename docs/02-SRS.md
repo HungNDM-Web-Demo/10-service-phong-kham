@@ -486,6 +486,6 @@ stateDiagram-v2
 | SCR-12 | Bản in đơn thuốc | `/visits/[id]/prescription` | DOCTOR | Máy in A5 | UC-09 |
 | SCR-13 | Kế hoạch điều trị (danh sách, chi tiết, bản in báo giá) | `/treatment-plans` | DOCTOR, MANAGER, RECEPTIONIST | Desktop | UC-10 |
 | SCR-14 | Thu phí (phiếu thanh toán, phiếu thu) | `/invoices` | RECEPTIONIST, MANAGER | Desktop | UC-11, UC-12 |
-| SCR-15 | Bản in phiếu thu | `/invoices/[id]/receipt` | RECEPTIONIST | Máy in A5 | UC-11, UC-12 |
+| SCR-15 | Bản in phiếu thu | `/invoices/receipts/[id]` | RECEPTIONIST | Máy in A5 | UC-11, UC-12 |
 | SCR-16 | Nhắc tái khám | `/follow-ups` | RECEPTIONIST | Desktop | UC-13 |
 | SCR-17 | Báo cáo | `/reports` | MANAGER | Desktop | UC-15 |

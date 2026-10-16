@@ -6,5 +6,8 @@ public enum AuditAction
     Create,
     Update,
     Delete,
-    Login
+    Login,
+
+    /// <summary>Mở xem nội dung chuyên môn của bệnh nhân (dự án Phòng khám, BR-32)</summary>
+    View
 }

@@ -24,11 +24,11 @@ public sealed class MatchesFunctionTests : IAsyncLifetime
     public async Task DisposeAsync() => await _host.DisposeAsync();
 
     [Theory]
-    [InlineData("MINH", "admin")]
-    [InlineData("minh", "admin")]
-    [InlineData("mAi", "quanly")]
-    [InlineData("NHANVIEN@EXAMPLE", "nhanvien")]
-    [InlineData("0123456783", "nhanvien")]
+    [InlineData("ADMIN@EXAMPLE", "admin")]
+    [InlineData("admin@example", "admin")]
+    [InlineData("tHANH", "quanly")]
+    [InlineData("LETAN@EXAMPLE", "letan")]
+    [InlineData("0123456784", "letan")]
     public async Task Search_IsCaseInsensitiveForAscii(string search, string expectedUsername)
     {
         var page = await SearchAsync(search);

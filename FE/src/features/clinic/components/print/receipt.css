@@ -1,0 +1,86 @@
+/*
+ * Khổ in dùng chung (SRS §6): phiếu số thứ tự 80 mm (SCR-07, vùng in 72 mm, chữ tối thiểu 12 px);
+ * đơn thuốc, báo giá, phiếu thu khổ A5 dọc (SCR-12, SCR-15). Mỗi khổ một trang in có tên để hai loại không ảnh hưởng nhau.
+ */
+@page receipt80 {
+  size: 80mm auto;
+  margin: 4mm;
+}
+
+@page sheetA5 {
+  size: A5 portrait;
+  margin: 10mm;
+}
+
+.receipt {
+  page: receipt80;
+  width: 72mm;
+  max-width: 100%;
+  font-size: 12px;
+  line-height: 1.45;
+  color: #000;
+  background: #fff;
+  font-family: var(--font-be-vietnam-pro), ui-sans-serif, system-ui, sans-serif;
+  font-feature-settings: 'tnum';
+}
+
+.sheet-a5 {
+  page: sheetA5;
+  width: 128mm;
+  min-height: 180mm;
+  max-width: 100%;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: #000;
+  background: #fff;
+  font-family: var(--font-be-vietnam-pro), ui-sans-serif, system-ui, sans-serif;
+  font-feature-settings: 'tnum';
+}
+
+.receipt-sep,
+.sheet-sep {
+  border: 0;
+  border-top: 1px dashed #000;
+  margin: 6px 0;
+}
+
+.sheet-a5 table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.sheet-a5 th,
+.sheet-a5 td {
+  border-bottom: 1px solid #d4d4d4;
+  padding: 4px 4px;
+  vertical-align: top;
+  text-align: left;
+}
+
+.sheet-a5 th {
+  font-weight: 600;
+  border-bottom: 1px solid #000;
+}
+
+@media print {
+  html,
+  body {
+    background: #fff !important;
+    color: #000 !important;
+    overflow: visible !important;
+  }
+  .print-hidden {
+    display: none !important;
+  }
+  .receipt {
+    width: 72mm;
+    margin: 0;
+    box-shadow: none;
+  }
+  .sheet-a5 {
+    width: auto;
+    min-height: 0;
+    margin: 0;
+    box-shadow: none;
+  }
+}

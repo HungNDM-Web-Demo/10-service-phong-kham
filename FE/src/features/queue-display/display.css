@@ -1,0 +1,34 @@
+/*
+ * Màn hình gọi số ở sảnh (SCR-08, FR-17, UC-06 bước 4): dải "Mời số" nhấp nháy khi có lượt gọi mới hoặc gọi lại,
+ * thẻ phòng vừa gọi viền sáng. Chỉ dùng token màu của theme. Người dùng bật giảm chuyển động thì index.css tắt hiệu ứng.
+ */
+@keyframes queue-call-flash {
+  0%,
+  100% {
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+  }
+  50% {
+    background-color: var(--cta);
+    color: var(--cta-foreground);
+  }
+}
+
+.queue-call-flash {
+  animation: queue-call-flash 0.8s ease-in-out 6;
+}
+
+@keyframes queue-room-called {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0.4vh var(--cta);
+  }
+  50% {
+    box-shadow: 0 0 0 1.1vh var(--cta);
+  }
+}
+
+.queue-room-called {
+  box-shadow: 0 0 0 0.4vh var(--cta);
+  animation: queue-room-called 0.8s ease-in-out 6;
+}

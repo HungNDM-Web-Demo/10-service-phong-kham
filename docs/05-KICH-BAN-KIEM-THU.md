@@ -13,6 +13,7 @@
 | Tài khoản | Theo cột "Vai trò" của từng test case, dùng "Đăng nhập nhanh": `quanly`, `letan`, `bacsi`; trang đặt lịch mở ở cửa sổ ẩn danh, không đăng nhập |
 | Thiết bị | Trang đặt lịch chạy ở cửa sổ rộng 390 px; màn hình sảnh ở tab riêng 1920×1080 |
 | Test liên quan giờ | TC-19, TC-20 cần thao tác theo đồng hồ thật; ghi giờ thực tế vào biên bản |
+| "Ngày mai" | Ngày làm việc kế tiếp: chạy vào thứ 7 thì là thứ 2 tuần sau (dữ liệu mẫu dựng theo quy ước này, `06` §5.3) |
 | Đạt | Kết quả thực tế khớp toàn bộ cột "Kết quả mong đợi" |
 
 Dữ liệu mẫu dùng trong test (dữ liệu giả):

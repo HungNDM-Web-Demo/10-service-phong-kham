@@ -1,9 +1,188 @@
 {
-  "$comment": "Phần riêng của dự án, ghép thêm vào system.json khi seed (FE mock và BE SystemSeeder). permissions: quyền nghiệp vụ; roles: vai trò riêng (vd CASHIER); roleGrants: quyền cấp thêm cho vai trò có sẵn; users: tài khoản demo thêm, trùng username thì ghi đè các trường khai báo; roles trùng code thì ghi đè tên, mô tả; settings: ghi đè giá trị cài đặt nền theo khóa; homeAfterLogin: trang mở sau khi đăng nhập (chỉ FE).",
-  "permissions": [],
-  "roles": [],
-  "roleGrants": {},
-  "users": [],
-  "settings": [],
+  "$comment": "Phần riêng của dự án, ghép thêm vào system.json khi seed (FE mock và BE SystemSeeder). Quyền, vai trò: docs/07-DANH-SACH-API.md §1; cài đặt: docs/06-THIET-KE-CSDL.md §3.",
+  "permissions": [
+    {"code": "services.view", "groupName": "Danh mục", "name": "Xem dịch vụ, chẩn đoán mẫu", "sortOrder": 200},
+    {"code": "services.create", "groupName": "Danh mục", "name": "Thêm dịch vụ, chẩn đoán mẫu", "sortOrder": 201},
+    {"code": "services.update", "groupName": "Danh mục", "name": "Sửa, ngừng dịch vụ, chẩn đoán mẫu, đổi giá", "sortOrder": 202},
+    {"code": "services.delete", "groupName": "Danh mục", "name": "Xóa dịch vụ, chẩn đoán mẫu chưa dùng", "sortOrder": 203},
+    {"code": "medicines.view", "groupName": "Thuốc", "name": "Xem danh mục thuốc", "sortOrder": 204},
+    {"code": "medicines.create", "groupName": "Thuốc", "name": "Thêm thuốc", "sortOrder": 205},
+    {"code": "medicines.update", "groupName": "Thuốc", "name": "Sửa, ngừng thuốc, đổi giá", "sortOrder": 206},
+    {"code": "medicines.delete", "groupName": "Thuốc", "name": "Xóa thuốc chưa kê", "sortOrder": 207},
+    {"code": "doctors.view", "groupName": "Bác sĩ", "name": "Xem bác sĩ, lịch làm việc", "sortOrder": 208},
+    {"code": "doctors.create", "groupName": "Bác sĩ", "name": "Thêm bác sĩ", "sortOrder": 209},
+    {"code": "doctors.update", "groupName": "Bác sĩ", "name": "Sửa bác sĩ, lịch làm việc, ngày nghỉ", "sortOrder": 210},
+    {"code": "doctors.delete", "groupName": "Bác sĩ", "name": "Xóa bác sĩ chưa phát sinh", "sortOrder": 211},
+    {"code": "appointments.view", "groupName": "Lịch hẹn", "name": "Xem lịch hẹn (bác sĩ chỉ thấy lịch của mình)", "sortOrder": 212},
+    {"code": "appointments.create", "groupName": "Lịch hẹn", "name": "Tạo lịch hẹn", "sortOrder": 213},
+    {"code": "appointments.update", "groupName": "Lịch hẹn", "name": "Xác nhận, đổi giờ lịch hẹn", "sortOrder": 214},
+    {"code": "appointments.cancel", "groupName": "Lịch hẹn", "name": "Hủy lịch hẹn", "sortOrder": 215},
+    {"code": "queue-tickets.view", "groupName": "Tiếp đón, hàng chờ", "name": "Xem hàng chờ (bác sĩ chỉ thấy hàng chờ của mình)", "sortOrder": 216},
+    {"code": "queue-tickets.create", "groupName": "Tiếp đón, hàng chờ", "name": "Tiếp đón, cấp số thứ tự", "sortOrder": 217},
+    {"code": "queue-tickets.update", "groupName": "Tiếp đón, hàng chờ", "name": "Chuyển bác sĩ, hủy lượt, ghi nhận quay lại", "sortOrder": 218},
+    {"code": "queue-tickets.call", "groupName": "Tiếp đón, hàng chờ", "name": "Gọi, gọi lại, bỏ qua bệnh nhân", "sortOrder": 219},
+    {"code": "patients.view", "groupName": "Bệnh nhân", "name": "Xem hồ sơ hành chính, lịch sử khám tóm tắt", "sortOrder": 220},
+    {"code": "patients.create", "groupName": "Bệnh nhân", "name": "Thêm bệnh nhân", "sortOrder": 221},
+    {"code": "patients.update", "groupName": "Bệnh nhân", "name": "Sửa hồ sơ bệnh nhân", "sortOrder": 222},
+    {"code": "medical-records.view", "groupName": "Bệnh nhân", "name": "Xem nội dung chuyên môn (chẩn đoán, đơn thuốc, kết quả)", "sortOrder": 223},
+    {"code": "visits.examine", "groupName": "Khám bệnh", "name": "Ghi phiếu khám, chỉ định, kê đơn, kết thúc khám", "sortOrder": 224},
+    {"code": "visits.reopen", "groupName": "Khám bệnh", "name": "Mở lại phiếu khám đã kết thúc", "sortOrder": 225},
+    {"code": "treatment-plans.view", "groupName": "Kế hoạch điều trị", "name": "Xem kế hoạch, báo giá", "sortOrder": 226},
+    {"code": "treatment-plans.create", "groupName": "Kế hoạch điều trị", "name": "Lập kế hoạch điều trị", "sortOrder": 227},
+    {"code": "treatment-plans.update", "groupName": "Kế hoạch điều trị", "name": "Sửa, chốt báo giá, ghi nhận đồng ý, dừng điều trị", "sortOrder": 228},
+    {"code": "treatment-plans.approve", "groupName": "Kế hoạch điều trị", "name": "Duyệt giảm giá vượt hạn mức", "sortOrder": 229},
+    {"code": "invoices.view", "groupName": "Thu phí", "name": "Xem phiếu thanh toán, phiếu thu", "sortOrder": 230},
+    {"code": "invoices.collect", "groupName": "Thu phí", "name": "Thu tiền, thu nợ, đánh dấu thuốc mua ngoài", "sortOrder": 231},
+    {"code": "invoices.cancel", "groupName": "Thu phí", "name": "Hủy phiếu thu", "sortOrder": 232},
+    {"code": "follow-ups.view", "groupName": "Nhắc tái khám", "name": "Xem danh sách nhắc tái khám", "sortOrder": 233},
+    {"code": "follow-ups.update", "groupName": "Nhắc tái khám", "name": "Gửi tin nhắc, ghi kết quả gọi", "sortOrder": 234},
+    {"code": "reports.view", "groupName": "Báo cáo", "name": "Xem tổng quan, báo cáo, xuất Excel", "sortOrder": 235}
+  ],
+  "roles": [
+    {
+      "code": "MANAGER",
+      "name": "Quản lý",
+      "description": "Danh mục, bác sĩ, lịch làm việc, duyệt giảm giá kế hoạch, hủy phiếu thu, tổng quan, báo cáo"
+    },
+    {
+      "code": "RECEPTIONIST",
+      "name": "Lễ tân",
+      "description": "Lịch hẹn, tiếp đón, hàng chờ, thu phí, nhắc tái khám; không xem nội dung chuyên môn",
+      "isSystem": true,
+      "permissions": [
+        "services.view",
+        "medicines.view",
+        "doctors.view",
+        "appointments.view",
+        "appointments.create",
+        "appointments.update",
+        "appointments.cancel",
+        "queue-tickets.view",
+        "queue-tickets.create",
+        "queue-tickets.update",
+        "patients.view",
+        "patients.create",
+        "patients.update",
+        "treatment-plans.view",
+        "invoices.view",
+        "invoices.collect",
+        "follow-ups.view",
+        "follow-ups.update"
+      ]
+    },
+    {
+      "code": "DOCTOR",
+      "name": "Bác sĩ",
+      "description": "Gọi bệnh nhân, ghi phiếu khám, kê đơn, lập kế hoạch điều trị",
+      "isSystem": true,
+      "permissions": [
+        "services.view",
+        "medicines.view",
+        "doctors.view",
+        "appointments.view",
+        "queue-tickets.view",
+        "queue-tickets.call",
+        "patients.view",
+        "patients.create",
+        "patients.update",
+        "medical-records.view",
+        "visits.examine",
+        "visits.reopen",
+        "treatment-plans.view",
+        "treatment-plans.create",
+        "treatment-plans.update"
+      ]
+    }
+  ],
+  "roleGrants": {
+    "MANAGER": [
+      "services.view",
+      "services.create",
+      "services.update",
+      "services.delete",
+      "medicines.view",
+      "medicines.create",
+      "medicines.update",
+      "medicines.delete",
+      "doctors.view",
+      "doctors.create",
+      "doctors.update",
+      "doctors.delete",
+      "appointments.view",
+      "appointments.create",
+      "appointments.update",
+      "appointments.cancel",
+      "queue-tickets.view",
+      "queue-tickets.create",
+      "queue-tickets.update",
+      "patients.view",
+      "patients.create",
+      "patients.update",
+      "treatment-plans.view",
+      "treatment-plans.approve",
+      "invoices.view",
+      "invoices.collect",
+      "invoices.cancel",
+      "follow-ups.view",
+      "follow-ups.update",
+      "reports.view"
+    ]
+  },
+  "users": [
+    {
+      "username": "admin",
+      "description": "Phân quyền tới từng nút, tài khoản, thương hiệu, thông tin phòng khám"
+    },
+    {
+      "username": "quanly",
+      "fullName": "Ngô Thị Thanh Hương",
+      "description": "Quản lý: tổng quan, danh mục, bác sĩ, duyệt giảm giá, báo cáo"
+    },
+    {
+      "username": "letan",
+      "fullName": "Phan Thị Ngọc Mai",
+      "email": "letan@example.com",
+      "phone": "0123456784",
+      "roles": [
+        "RECEPTIONIST"
+      ],
+      "isDemoAccount": true,
+      "quickLogin": true,
+      "sortOrder": 3,
+      "description": "Lễ tân: lịch hẹn, tiếp đón, hàng chờ, thu phí, nhắc tái khám"
+    },
+    {
+      "username": "bacsi",
+      "fullName": "Nguyễn Minh Khoa",
+      "email": "bacsi@example.com",
+      "phone": "0123456785",
+      "roles": [
+        "DOCTOR"
+      ],
+      "isDemoAccount": true,
+      "quickLogin": true,
+      "sortOrder": 4,
+      "description": "Bác sĩ BS01 Răng hàm mặt: gọi số, phiếu khám, đơn thuốc, kế hoạch điều trị"
+    },
+    {
+      "username": "nhanvien",
+      "enabled": false
+    }
+  ],
+  "settings": [
+    {"key": "Brand.AppName", "value": "Nha khoa An Tâm", "groupName": "Thương hiệu"},
+    {"key": "Brand.LogoUrl", "value": "/logo/logo-mark.svg", "groupName": "Thương hiệu"},
+    {"key": "Brand.PrimaryColor", "value": "#0E7490", "groupName": "Thương hiệu"},
+    {"key": "Clinic.Name", "value": "Phòng khám Nha khoa An Tâm", "groupName": "Phòng khám"},
+    {"key": "Clinic.Address", "value": "128 Nguyễn Văn Linh, Thanh Khê, Đà Nẵng", "groupName": "Phòng khám"},
+    {"key": "Clinic.Hotline", "value": "0236 3 789 115", "groupName": "Phòng khám"},
+    {"key": "Clinic.WorkingHours", "value": "Thứ 2 – Chủ nhật: 08:00 – 20:00", "groupName": "Phòng khám"},
+    {"key": "Clinic.BankBin", "value": "970418", "groupName": "Phòng khám"},
+    {"key": "Clinic.BankAccount", "value": "0000000000", "groupName": "Phòng khám"},
+    {"key": "Clinic.BankAccountName", "value": "NHA KHOA AN TAM", "groupName": "Phòng khám"},
+    {"key": "Clinic.DisplayCode", "value": "sanh2026", "groupName": "Phòng khám"},
+    {"key": "Clinic.FollowUpRemindDays", "value": "1", "groupName": "Phòng khám"},
+    {"key": "Clinic.PriorityReasons", "value": "Phụ nữ có thai, Người khuyết tật", "groupName": "Phòng khám"}
+  ],
   "homeAfterLogin": "/dashboard"
 }
